@@ -9,7 +9,7 @@
  * Plugin Name: Flatsome Custom Product Hooks
  * Description: Extends Flatsome custom product hooks with Germanized options.
  * Version:     1.0.1
- * Plugin URI:  https://github.com/
+ * Plugin URI:  https://github.com/JimmyAppelt/flatsome-custom-product-hooks
  * Author:      Jim Appelt
  * Text Domain: fl-cph
  * Domain Path: /languages/
