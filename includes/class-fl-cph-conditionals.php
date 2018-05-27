@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 class FL_CPH_Conditionals {
 
 	/**
-	 * Check if Flatsome theme is activated and its version is 3.4 or above.
+	 * Check if Flatsome theme is activated and its version is 3.6 or above.
 	 *
 	 * @return bool
 	 */
@@ -22,7 +22,7 @@ class FL_CPH_Conditionals {
 		$name    = $theme->get( 'Name' );
 		$version = $theme->get( 'Version' );
 
-		return 'Flatsome' === $name && version_compare( $version, '3.4.0', '>=' );
+		return 'Flatsome' === $name && version_compare( $version, '3.6.0', '>=' );
 	}
 
 	/**
