@@ -12,8 +12,8 @@
 
 #### WordPress Upload
 
-1. Navigate to the [release section](https://github.com/JimmyAppelt/flatsome-custom-product-hooks/releases)  and download the latest release `.zip` file
-2. Download the latest tagged archive (choose the "zip" option).Unzip the archive, rename the folder correctly to `flatsome-custom-product-hooks`, then re-zip the file.
+1. Navigate to the [release section](https://github.com/JimmyAppelt/flatsome-custom-product-hooks/releases) and download the latest release `.zip` file
+2. Unzip the archive, rename the folder correctly to `flatsome-custom-product-hooks`, then re-zip the file.
 3. Go to the **Plugins → Add New** screen and click the Upload tab.
 4. Upload the zipped archive directly.
 5. Go to the Plugins screen and find the Plugin in the list.
