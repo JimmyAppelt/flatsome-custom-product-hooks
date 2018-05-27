@@ -36,7 +36,7 @@ final class FL_CPH {
 	public $germanized;
 
 	/**
-	 * Custom hook list and there labels
+	 * Custom hook list and their labels
 	 *
 	 * @var array
 	 */
@@ -85,9 +85,9 @@ final class FL_CPH {
 	}
 
 	/**
-	 * Adds new hooks and there labels to the custom hooks list.
+	 * Adds new hooks and their labels to the custom hooks list.
 	 *
-	 * @param array $hooks Array that contains new hook names and there labels.
+	 * @param array $hooks Array that contains new hook names and their labels.
 	 */
 	public function add_to_hook_list( array $hooks ) {
 		if ( ! $hooks ) {
@@ -101,7 +101,7 @@ final class FL_CPH {
 	/**
 	 * Hook up new custom hooks into the builder.
 	 *
-	 * @param array $custom_hooks Array that contains all hook names and there labels.
+	 * @param array $custom_hooks Array that contains all hook names and their labels.
 	 */
 	private function add_hooks_into_builder( array $custom_hooks ) {
 		if ( ! $custom_hooks ) {
