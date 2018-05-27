@@ -1,3 +1,6 @@
+- 1.0.2 -
+New: Added auto update support.
+
 - 1.0.1 -
 Fixed: Required Flatsome version.
 
