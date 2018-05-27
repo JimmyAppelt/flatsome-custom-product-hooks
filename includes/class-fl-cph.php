@@ -85,7 +85,7 @@ final class FL_CPH {
 	}
 
 	/**
-	 * Hook up new custom hooks into the builder.
+	 * Adds new hooks and there labels to the custom hooks list.
 	 *
 	 * @param array $hooks Array that contains new hook names and there labels.
 	 */
