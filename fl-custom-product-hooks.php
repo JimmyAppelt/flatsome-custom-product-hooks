@@ -6,13 +6,14 @@
  * @license   GPL v3
  *
  * @wordpress-plugin
- * Plugin Name: Flatsome Custom Product Hooks
- * Description: Extends Flatsome custom product hooks with Germanized options.
- * Version:     1.0.1
- * Plugin URI:  https://github.com/JimmyAppelt/flatsome-custom-product-hooks
- * Author:      Jim Appelt
- * Text Domain: fl-cph
- * Domain Path: /languages/
+ * Plugin Name:       Flatsome Custom Product Hooks
+ * Description:       Extends Flatsome custom product hooks with Germanized options.
+ * Version:           1.0.1
+ * Plugin URI:        https://github.com/JimmyAppelt/flatsome-custom-product-hooks
+ * GitHub Plugin URI: https://github.com/JimmyAppelt/flatsome-custom-product-hooks
+ * Author:            Jim Appelt
+ * Text Domain:       fl-cph
+ * Domain Path:       /languages/
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
