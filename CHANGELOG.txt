@@ -1,2 +1,5 @@
+- 1.0.1 -
+Fixed: Required Flatsome version.
+
 - 1.0.0 -
-* First public
+First public
