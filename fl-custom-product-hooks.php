@@ -11,6 +11,7 @@
  * Version:           1.0.3-dev
  * Plugin URI:        https://github.com/JimmyAppelt/flatsome-custom-product-hooks
  * GitHub Plugin URI: https://github.com/JimmyAppelt/flatsome-custom-product-hooks
+ * Release Asset:     true
  * Author:            Jim Appelt
  * Text Domain:       fl-cph
  * Domain Path:       /languages/
