@@ -8,7 +8,7 @@
  * @wordpress-plugin
  * Plugin Name:       Flatsome Custom Product Hooks
  * Description:       Extends Flatsome custom product hooks with Germanized options.
- * Version:           1.0.3-dev
+ * Version:           1.0.2
  * Plugin URI:        https://github.com/JimmyAppelt/flatsome-custom-product-hooks
  * GitHub Plugin URI: https://github.com/JimmyAppelt/flatsome-custom-product-hooks
  * Release Asset:     true
