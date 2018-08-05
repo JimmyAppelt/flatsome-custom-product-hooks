@@ -12,35 +12,36 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Class Germanized
  */
-class Germanized extends Integration {
+final class Germanized extends Integration {
 
 	/**
-	 * Germanized constructor.
+	 * Load when condition is met.
+	 *
+	 * @return bool
 	 */
-	public function __construct() {
-		parent::__construct( $this );
-		$this->set_args(
-			[
-				'condition' => [
-					'class' => 'WooCommerce_Germanized',
-				],
-				'hooks'     => [
-					'flatsome_woocommerce_gzd_template_single_price_unit'         => 'Germanized - Price Unit',
-					'flatsome_woocommerce_gzd_template_single_legal_info'         => 'Germanized - Legal Info',
-					'flatsome_woocommerce_gzd_template_single_delivery_time_info' => 'Germanized - Delivery Time Info',
-					'flatsome_woocommerce_gzd_template_single_product_units'      => 'Germanized - Product Units',
-				],
-				'callbacks' => [
-					'attach_hooks_content',
-				],
-			]
-		);
+	protected function load() {
+		return class_exists( 'WooCommerce_Germanized' );
+	}
+
+	/**
+	 * Add new hooks.
+	 * hook_name => label
+	 *
+	 * @return array
+	 */
+	protected function hooks() {
+		return [
+			'flatsome_woocommerce_gzd_template_single_price_unit'         => 'Germanized - Price Unit',
+			'flatsome_woocommerce_gzd_template_single_legal_info'         => 'Germanized - Legal Info',
+			'flatsome_woocommerce_gzd_template_single_delivery_time_info' => 'Germanized - Delivery Time Info',
+			'flatsome_woocommerce_gzd_template_single_product_units'      => 'Germanized - Product Units',
+		];
 	}
 
 	/**
 	 * Attach content to newly created hooks.
 	 */
-	public function attach_hooks_content() {
+	protected function attach() {
 		// Unit price.
 		if ( get_option( 'woocommerce_gzd_display_product_detail_unit_price' ) === 'yes' ) {
 			add_action( 'flatsome_woocommerce_gzd_template_single_price_unit', 'woocommerce_gzd_template_single_price_unit', wc_gzd_get_hook_priority( 'single_price_unit' ) );
