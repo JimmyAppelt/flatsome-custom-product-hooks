@@ -5,12 +5,14 @@
  * @package Fl_Custom_Product_Hooks
  */
 
+namespace Flcph\Inc\Integrations;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class FL_CPH_Germanized
+ * Class Germanized
  */
-class FL_CPH_Germanized {
+class Germanized {
 
 	/**
 	 * Process Germanized single product page hooks to be used on a Flatsome Custom Product layout.

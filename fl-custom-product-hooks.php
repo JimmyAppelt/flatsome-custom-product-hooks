@@ -29,17 +29,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Flcph\Inc\Plugin;
+
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'FL_CPH' ) ) {
-	include_once dirname( __FILE__ ) . '/includes/class-fl-cph.php';
-}
+include_once dirname( __FILE__ ) . '/inc/class-plugin.php';
 
 /**
  * Main instance of Flcph.
  *
- * @return FL_CPH
+ * @return Plugin
  */
 function flcph() {
-	return FL_CPH::get_instance();
+	return Plugin::get_instance();
 }

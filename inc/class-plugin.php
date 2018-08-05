@@ -5,33 +5,36 @@
  * @package Fl_Custom_Product_Hooks
  */
 
+namespace Flcph\Inc;
+use Flcph\Inc\Integrations\Germanized;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class FL_CPH
+ * Class Plugin
  *
- * @class FL_CPH
+ * @class Plugin
  */
-final class FL_CPH {
+final class Plugin {
 
 	/**
 	 * Static instance
 	 *
-	 * @var FL_CPH $instance
+	 * @var Plugin $instance
 	 */
 	private static $instance = null;
 
 	/**
-	 * FL_CPH_Conditionals
+	 * Conditionals
 	 *
-	 * @var object FL_CPH_Conditionals
+	 * @var Conditionals $conditionals
 	 */
 	public $conditionals;
 
 	/**
-	 * FL_CPH_Germanized
+	 * Germanized
 	 *
-	 * @var object FL_CPH_Germanized
+	 * @var Germanized $germanized
 	 */
 	public $germanized;
 
@@ -45,7 +48,7 @@ final class FL_CPH {
 	/**
 	 * Initializes the plugin object and returns its instance.
 	 *
-	 * @return FL_CPH The plugin object instance
+	 * @return Plugin The plugin object instance
 	 */
 	public static function get_instance() {
 		if ( ! isset( self::$instance ) ) {
@@ -56,29 +59,29 @@ final class FL_CPH {
 	}
 
 	/**
-	 * FL_CPH constructor.
+	 * Plugin constructor.
 	 */
 	public function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 
-		do_action( 'fl_cph_loaded' );
+		do_action( 'flcph_plugin_loaded' );
 	}
 
 	/**
 	 * Init the plugin after plugins_loaded so environment variables are set.
 	 */
 	public function init() {
-		include_once dirname( __FILE__ ) . '/class-fl-cph-conditionals.php';
-		include_once dirname( __FILE__ ) . '/integrations/class-fl-cph-germanized.php';
+		include_once dirname( __FILE__ ) . '/class-conditionals.php';
+		include_once dirname( __FILE__ ) . '/integrations/class-germanized.php';
 
-		$this->conditionals = new FL_CPH_Conditionals();
+		$this->conditionals = new Conditionals();
 
 		if ( ! $this->conditionals->is_flatsome_activated() || ! $this->conditionals->is_woocommerce_activated() ) {
 			return;
 		}
 
 		// Start integration.
-		$this->germanized = new FL_CPH_Germanized();
+		$this->germanized = new Germanized();
 		$this->germanized->create_builder_options();
 
 		$this->add_hooks_into_builder( $this->custom_hooks );
@@ -118,5 +121,5 @@ final class FL_CPH {
 	}
 }
 
-FL_CPH::get_instance();
+Plugin::get_instance();
 

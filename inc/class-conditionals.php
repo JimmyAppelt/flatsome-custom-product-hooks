@@ -5,12 +5,14 @@
  * @package Fl_Custom_Product_Hooks
  */
 
+namespace Flcph\Inc;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class FL_CPH_Conditionals
+ * Class Conditionals
  */
-class FL_CPH_Conditionals {
+class Conditionals {
 
 	/**
 	 * Check if Flatsome theme is activated and its version is 3.6 or above.
