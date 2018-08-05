@@ -6,6 +6,7 @@
  */
 
 namespace Flcph\Inc;
+
 use Flcph\Inc\Integrations\Germanized;
 
 defined( 'ABSPATH' ) || exit;
