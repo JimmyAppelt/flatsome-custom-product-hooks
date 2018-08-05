@@ -12,31 +12,35 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Class Germanized
  */
-class Germanized {
+class Germanized extends Integration {
 
 	/**
-	 * Process Germanized single product page hooks to be used on a Flatsome Custom Product layout.
+	 * Germanized constructor.
 	 */
-	public function create_builder_options() {
-		if ( flcph()->conditionals->is_plugin_activated( 'WooCommerce_Germanized' ) ) {
-			if ( get_theme_mod( 'product_layout' ) === 'custom' ) {
-				// Hook up new Flatsome hooks.
-				$this->init_custom_action_hooks();
-				// Add new hooks to custom hook array.
-				flcph()->add_to_hook_list( array(
+	public function __construct() {
+		parent::__construct( $this );
+		$this->set_args(
+			[
+				'condition' => [
+					'class' => 'WooCommerce_Germanized',
+				],
+				'hooks'     => [
 					'flatsome_woocommerce_gzd_template_single_price_unit'         => 'Germanized - Price Unit',
 					'flatsome_woocommerce_gzd_template_single_legal_info'         => 'Germanized - Legal Info',
 					'flatsome_woocommerce_gzd_template_single_delivery_time_info' => 'Germanized - Delivery Time Info',
 					'flatsome_woocommerce_gzd_template_single_product_units'      => 'Germanized - Product Units',
-				) );
-			}
-		}
+				],
+				'callbacks' => [
+					'attach_hooks_content',
+				],
+			]
+		);
 	}
 
 	/**
-	 * Create Flatsome custom single product hooks when its option is enabled.
+	 * Attach content to newly created hooks.
 	 */
-	private function init_custom_action_hooks() {
+	public function attach_hooks_content() {
 		// Unit price.
 		if ( get_option( 'woocommerce_gzd_display_product_detail_unit_price' ) === 'yes' ) {
 			add_action( 'flatsome_woocommerce_gzd_template_single_price_unit', 'woocommerce_gzd_template_single_price_unit', wc_gzd_get_hook_priority( 'single_price_unit' ) );

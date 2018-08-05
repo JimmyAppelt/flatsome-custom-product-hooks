@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Class Plugin
  *
- * @class Plugin
+ * @package Flcph\Inc
  */
 final class Plugin {
 
@@ -73,6 +73,7 @@ final class Plugin {
 	 */
 	public function init() {
 		include_once dirname( __FILE__ ) . '/class-conditionals.php';
+		include_once dirname( __FILE__ ) . '/integrations/class-integration.php';
 		include_once dirname( __FILE__ ) . '/integrations/class-germanized.php';
 
 		$this->conditionals = new Conditionals();
@@ -83,7 +84,7 @@ final class Plugin {
 
 		// Start integration.
 		$this->germanized = new Germanized();
-		$this->germanized->create_builder_options();
+		$this->germanized->integrate();
 
 		$this->add_hooks_into_builder( $this->custom_hooks );
 	}
