@@ -7,6 +7,8 @@
 
 namespace Flcph\Inc\Integrations;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Class Integration
  *
