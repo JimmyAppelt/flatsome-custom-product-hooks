@@ -33,13 +33,6 @@ final class Plugin {
 	public $conditionals;
 
 	/**
-	 * Germanized
-	 *
-	 * @var Germanized $germanized
-	 */
-	public $germanized;
-
-	/**
 	 * Custom hook list and their labels
 	 *
 	 * @var array
@@ -83,8 +76,8 @@ final class Plugin {
 		}
 
 		// Start integration.
-		$this->germanized = new Germanized();
-		$this->germanized->integrate();
+		$germanized = new Germanized();
+		$germanized->integrate();
 
 		$this->add_hooks_into_builder( $this->custom_hooks );
 	}
