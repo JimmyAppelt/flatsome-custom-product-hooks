@@ -26,7 +26,6 @@ abstract class Integration {
 		}
 	}
 
-
 	/**
 	 * When should the integration integrate?
 	 *
