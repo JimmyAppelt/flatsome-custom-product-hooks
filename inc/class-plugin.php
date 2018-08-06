@@ -65,17 +65,21 @@ final class Plugin {
 	 * Init the plugin after plugins_loaded so environment variables are set.
 	 */
 	public function init() {
+		// Main classes.
 		include_once dirname( __FILE__ ) . '/class-conditionals.php';
 		include_once dirname( __FILE__ ) . '/integrations/class-integration.php';
+
+		// External plugin integration classes.
 		include_once dirname( __FILE__ ) . '/integrations/class-germanized.php';
 
+		// Initialise.
 		$this->conditionals = new Conditionals();
 
 		if ( ! $this->conditionals->is_flatsome_activated() || ! $this->conditionals->is_woocommerce_activated() ) {
 			return;
 		}
 
-		// Start integration.
+		// Start integrations.
 		$germanized = new Germanized();
 		$germanized->integrate();
 
