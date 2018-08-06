@@ -12,31 +12,36 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Class Germanized
  */
-class Germanized {
+final class Germanized extends Integration {
 
 	/**
-	 * Process Germanized single product page hooks to be used on a Flatsome Custom Product layout.
+	 * Load when condition is met.
+	 *
+	 * @return bool
 	 */
-	public function create_builder_options() {
-		if ( flcph()->conditionals->is_plugin_activated( 'WooCommerce_Germanized' ) ) {
-			if ( get_theme_mod( 'product_layout' ) === 'custom' ) {
-				// Hook up new Flatsome hooks.
-				$this->init_custom_action_hooks();
-				// Add new hooks to custom hook array.
-				flcph()->add_to_hook_list( array(
-					'flatsome_woocommerce_gzd_template_single_price_unit'         => 'Germanized - Price Unit',
-					'flatsome_woocommerce_gzd_template_single_legal_info'         => 'Germanized - Legal Info',
-					'flatsome_woocommerce_gzd_template_single_delivery_time_info' => 'Germanized - Delivery Time Info',
-					'flatsome_woocommerce_gzd_template_single_product_units'      => 'Germanized - Product Units',
-				) );
-			}
-		}
+	protected function load() {
+		return class_exists( 'WooCommerce_Germanized' );
 	}
 
 	/**
-	 * Create Flatsome custom single product hooks when its option is enabled.
+	 * Add new hooks.
+	 * hook_name => label
+	 *
+	 * @return array
 	 */
-	private function init_custom_action_hooks() {
+	protected function hooks() {
+		return [
+			'flatsome_woocommerce_gzd_template_single_price_unit'         => 'Germanized - Price Unit',
+			'flatsome_woocommerce_gzd_template_single_legal_info'         => 'Germanized - Legal Info',
+			'flatsome_woocommerce_gzd_template_single_delivery_time_info' => 'Germanized - Delivery Time Info',
+			'flatsome_woocommerce_gzd_template_single_product_units'      => 'Germanized - Product Units',
+		];
+	}
+
+	/**
+	 * Attach content to newly created hooks.
+	 */
+	protected function attach() {
 		// Unit price.
 		if ( get_option( 'woocommerce_gzd_display_product_detail_unit_price' ) === 'yes' ) {
 			add_action( 'flatsome_woocommerce_gzd_template_single_price_unit', 'woocommerce_gzd_template_single_price_unit', wc_gzd_get_hook_priority( 'single_price_unit' ) );
