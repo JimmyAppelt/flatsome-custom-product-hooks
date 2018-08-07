@@ -26,10 +26,10 @@ $germanized->load( function () {
  * hook_name => label
  */
 $germanized->hooks( [
-	'flatsome_woocommerce_gzd_template_single_price_unit' => 'Germanized - Price Unit',
-	'flatsome_woocommerce_gzd_template_single_legal_info' => 'Germanized - Legal Info',
+	'flatsome_woocommerce_gzd_template_single_price_unit'         => 'Germanized - Price Unit',
+	'flatsome_woocommerce_gzd_template_single_legal_info'         => 'Germanized - Legal Info',
 	'flatsome_woocommerce_gzd_template_single_delivery_time_info' => 'Germanized - Delivery Time Info',
-	'flatsome_woocommerce_gzd_template_single_product_units' => 'Germanized - Product Units',
+	'flatsome_woocommerce_gzd_template_single_product_units'      => 'Germanized - Product Units',
 ] );
 
 /**
