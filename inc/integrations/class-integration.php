@@ -51,20 +51,21 @@ class Integration {
 	 */
 	public function __construct( $label ) {
 		$this->identifier = $label;
-		add_action( 'init', [ $this, 'integrate' ] );
+		$this->integrate();
 	}
 
 	/**
 	 * Start Integration.
-	 * (do not call this from the instance)
 	 */
-	public function integrate() {
-		if ( $this->load_condition && get_theme_mod( 'product_layout' ) === 'custom' ) {
-			if ( is_admin() ) {
-				$this->add_hooks_into_builder( $this->hooks );
+	private function integrate() {
+		add_action( 'init', function () {
+			if ( $this->load_condition && get_theme_mod( 'product_layout' ) === 'custom' ) {
+				if ( is_admin() ) {
+					$this->add_hooks_into_builder( $this->hooks );
+				}
+				$this->run_callbacks();
 			}
-			$this->run_callbacks();
-		}
+		} );
 	}
 
 	/**
