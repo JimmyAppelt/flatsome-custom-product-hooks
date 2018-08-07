@@ -10,9 +10,9 @@ namespace Flcph\Inc;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class Conditionals
+ * Class Conditional
  */
-class Conditionals {
+class Conditional {
 
 	/**
 	 * Check if Flatsome theme is activated and its version is 3.6 or above.

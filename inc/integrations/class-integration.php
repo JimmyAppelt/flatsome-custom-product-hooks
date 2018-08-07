@@ -14,38 +14,111 @@ defined( 'ABSPATH' ) || exit;
  *
  * @package Flcph\Inc\Integrations
  */
-abstract class Integration {
+class Integration {
+
+	/**
+	 * Identifier
+	 *
+	 * @var string
+	 */
+	private $identifier = '';
+
+	/**
+	 * Whether or not the integration should integrate.
+	 *
+	 * @var bool
+	 */
+	private $load_condition = false;
+
+	/**
+	 * Holds new registered hooks
+	 *
+	 * @var array
+	 */
+	private $hooks = [];
+
+	/**
+	 * Holds attach callbacks.
+	 *
+	 * @var array
+	 */
+	private $callbacks = [];
+
+	/**
+	 * Integration constructor.
+	 *
+	 * @param string $label Integration identifier.
+	 */
+	public function __construct( $label ) {
+		$this->identifier = $label;
+		add_action( 'init', [ $this, 'integrate' ] );
+	}
 
 	/**
 	 * Start Integration.
+	 * (do not call this from the instance)
 	 */
 	public function integrate() {
-		if ( $this->load() ) {
-			if ( get_theme_mod( 'product_layout' ) === 'custom' ) {
-				flcph()->add_to_hook_list( $this->hooks() );
-				$this->attach();
+		if ( $this->load_condition && get_theme_mod( 'product_layout' ) === 'custom' ) {
+			if ( is_admin() ) {
+				$this->add_hooks_into_builder( $this->hooks );
 			}
+			$this->run_callbacks();
 		}
 	}
 
 	/**
-	 * When should the integration integrate?
+	 * Load integration or not?
 	 *
-	 * @return bool
+	 * @param callback $callback Return true or false.
 	 */
-	abstract protected function load();
+	public function load( $callback ) {
+		$this->load_condition = $callback();
+	}
 
 	/**
-	 * Attach new hooks to the main hook list.
+	 * Attach new functionality.
 	 *
-	 * @return array
+	 * @param array $hooks Hooks.
 	 */
-	abstract protected function hooks();
+	public function hooks( array $hooks ) {
+		$this->hooks = $hooks;
+	}
 
 	/**
-	 * Attaches all hook content of the integration.
+	 * Attach new functionality.
 	 *
-	 * @return mixed
+	 * @param callback $callback Callback.
 	 */
-	abstract protected function attach();
+	public function attach( $callback ) {
+		$this->callbacks[] = $callback;
+	}
+
+	/**
+	 * Run all registered attach callbacks.
+	 */
+	private function run_callbacks() {
+		foreach ( $this->callbacks as $callback ) {
+			$callback();
+		}
+	}
+
+	/**
+	 * Hook up new custom hooks into the builder.
+	 *
+	 * @param array $custom_hooks Array that contains all hook names and their labels.
+	 */
+	private function add_hooks_into_builder( array $custom_hooks ) {
+		if ( ! $custom_hooks ) {
+			return;
+		}
+
+		add_filter( 'flatsome_custom_product_single_product_hooks', function ( $hooks ) use ( $custom_hooks ) {
+			foreach ( $custom_hooks as $hook => $label ) {
+				$hooks[ $hook ] = $label;
+			}
+
+			return $hooks;
+		} );
+	}
 }

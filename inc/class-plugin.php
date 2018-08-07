@@ -7,8 +7,6 @@
 
 namespace Flcph\Inc;
 
-use Flcph\Inc\Integrations\Germanized;
-
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -28,16 +26,9 @@ final class Plugin {
 	/**
 	 * Conditionals
 	 *
-	 * @var Conditionals $conditionals
+	 * @var Conditional
 	 */
-	public $conditionals;
-
-	/**
-	 * Custom hook list and their labels
-	 *
-	 * @var array
-	 */
-	private $custom_hooks = [];
+	public $conditional;
 
 	/**
 	 * Initializes the plugin object and returns its instance.
@@ -56,9 +47,7 @@ final class Plugin {
 	 * Plugin constructor.
 	 */
 	public function __construct() {
-		add_action( 'plugins_loaded', array( $this, 'init' ) );
-
-		do_action( 'flcph_plugin_loaded' );
+		add_action( 'plugins_loaded', [ $this, 'init' ] );
 	}
 
 	/**
@@ -66,57 +55,17 @@ final class Plugin {
 	 */
 	public function init() {
 		// Main classes.
-		include_once dirname( __FILE__ ) . '/class-conditionals.php';
+		include_once dirname( __FILE__ ) . '/class-conditional.php';
 		include_once dirname( __FILE__ ) . '/integrations/class-integration.php';
 
-		// External plugin integration classes.
-		include_once dirname( __FILE__ ) . '/integrations/class-germanized.php';
+		$this->conditional = new Conditional();
 
-		// Initialise.
-		$this->conditionals = new Conditionals();
-
-		if ( ! $this->conditionals->is_flatsome_activated() || ! $this->conditionals->is_woocommerce_activated() ) {
+		if ( ! $this->conditional->is_flatsome_activated() || ! $this->conditional->is_woocommerce_activated() ) {
 			return;
 		}
 
-		// Start integrations.
-		$germanized = new Germanized();
-		$germanized->integrate();
-
-		$this->add_hooks_into_builder( $this->custom_hooks );
-	}
-
-	/**
-	 * Adds new hooks and their labels to the custom hooks list.
-	 *
-	 * @param array $hooks Array that contains new hook names and their labels.
-	 */
-	public function add_to_hook_list( array $hooks ) {
-		if ( ! $hooks ) {
-			return;
-		}
-		foreach ( $hooks as $hook => $label ) {
-			$this->custom_hooks[ $hook ] = $label;
-		}
-	}
-
-	/**
-	 * Hook up new custom hooks into the builder.
-	 *
-	 * @param array $custom_hooks Array that contains all hook names and their labels.
-	 */
-	private function add_hooks_into_builder( array $custom_hooks ) {
-		if ( ! $custom_hooks ) {
-			return;
-		}
-
-		add_filter( 'flatsome_custom_product_single_product_hooks', function ( $hooks ) use ( $custom_hooks ) {
-			foreach ( $custom_hooks as $hook => $label ) {
-				$hooks[ $hook ] = $label;
-			}
-
-			return $hooks;
-		} );
+		// External plugin integrations.
+		include_once dirname( __FILE__ ) . '/integrations/germanized.php';
 	}
 }
 
