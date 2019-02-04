@@ -31,19 +31,6 @@ final class Plugin {
 	public $conditional;
 
 	/**
-	 * Initializes the plugin object and returns its instance.
-	 *
-	 * @return Plugin The plugin object instance
-	 */
-	public static function get_instance() {
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
-
-	/**
 	 * Plugin constructor.
 	 */
 	public function __construct() {
@@ -65,7 +52,21 @@ final class Plugin {
 		}
 
 		// External plugin integrations.
+		// TODO: load dynamically from integrations folder.
 		include_once dirname( __FILE__ ) . '/integrations/germanized.php';
+	}
+
+	/**
+	 * Initializes the plugin object and returns its instance.
+	 *
+	 * @return Plugin The plugin object instance
+	 */
+	public static function get_instance() {
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
 	}
 }
 

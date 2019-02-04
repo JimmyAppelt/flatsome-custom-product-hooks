@@ -9,22 +9,12 @@ namespace Flcph\Inc\Integrations;
 
 defined( 'ABSPATH' ) || exit;
 
-/**
- * Initialise new integration.
- */
 $germanized = new Integration( 'germanized' );
 
-/**
- * Specify when to load this (when the plugin is activated).
- */
 $germanized->load( function () {
 	return class_exists( 'WooCommerce_Germanized' );
 } );
 
-/**
- * Add new hooks.
- * hook_name => label
- */
 $germanized->hooks( [
 	'flatsome_woocommerce_gzd_template_single_price_unit'         => 'Germanized - Price Unit',
 	'flatsome_woocommerce_gzd_template_single_legal_info'         => 'Germanized - Legal Info',
@@ -32,9 +22,6 @@ $germanized->hooks( [
 	'flatsome_woocommerce_gzd_template_single_product_units'      => 'Germanized - Product Units',
 ] );
 
-/**
- * Attach content to the new specified hooks.
- */
 $germanized->attach( function () {
 	// Unit price.
 	if ( get_option( 'woocommerce_gzd_display_product_detail_unit_price' ) === 'yes' ) {

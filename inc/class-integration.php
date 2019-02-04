@@ -69,7 +69,7 @@ class Integration {
 	}
 
 	/**
-	 * Load integration or not?
+	 * Needs the integration be loaded or not?
 	 *
 	 * @param callback $callback Return true or false.
 	 */
