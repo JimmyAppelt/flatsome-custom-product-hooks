@@ -56,7 +56,7 @@ final class Plugin {
 	public function init() {
 		// Main classes.
 		include_once dirname( __FILE__ ) . '/class-conditional.php';
-		include_once dirname( __FILE__ ) . '/integrations/class-integration.php';
+		include_once dirname( __FILE__ ) . '/class-integration.php';
 
 		$this->conditional = new Conditional();
 
