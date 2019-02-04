@@ -69,7 +69,8 @@ class Integration {
 	}
 
 	/**
-	 * Needs the integration be loaded or not?
+	 * Set load condition, whether or not the integration should load, needs to return True or False.
+	 * ( i.e. class_exists() )
 	 *
 	 * @param callback $callback Return true or false.
 	 */
@@ -78,7 +79,7 @@ class Integration {
 	}
 
 	/**
-	 * Attach new functionality.
+	 * Set new hooks.
 	 *
 	 * @param array $hooks Hooks.
 	 */
