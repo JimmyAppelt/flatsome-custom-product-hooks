@@ -54,6 +54,7 @@ final class Plugin {
 		// External plugin integrations.
 		// TODO: load dynamically from integrations folder.
 		include_once dirname( __FILE__ ) . '/integrations/germanized.php';
+		// include_once dirname( __FILE__ ) . '/integrations/yith-product-size-charts.php';
 	}
 
 	/**
